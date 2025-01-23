@@ -1,33 +1,33 @@
 import unittest
 
-from textnode import TextNode, TextType
+from htmlnode import HTMLNode, LeafNode
 
 
 class TestTextNode(unittest.TestCase):
     def test_eq(self):
-        node = TextNode("This is a text node", TextType.BOLD)
-        node2 = TextNode("This is a text node", TextType.BOLD)
+        node = HTMLNode("p", "text", ["a", "b"], {"a1":"b1", "a2":"b2"})
+        node2 = HTMLNode("p", "text", ["a", "b"], {"a1":"b1", "a2":"b2"})
         self.assertEqual(node, node2)
-        
+
     def test_not_eq_enum(self):
-        node = TextNode("This is a text node", TextType.BOLD)
-        node3 = TextNode("This is a text node", TextType.NORMAL)
+        node = HTMLNode("p", "text", ["a", "b"], {"a1":"b1", "a2":"b2"})
+        node3 = HTMLNode(props=None)
         self.assertNotEqual(node, node3)
 
     def test_not_eq_link(self):
-        node = TextNode("This is a text node", TextType.BOLD)
-        node4 = TextNode("This is a text node", TextType.BOLD, "http")
+        node = HTMLNode("p", "text", ["a", "b"], {"a1":"b1", "a2":"b2"})
+        node4 = HTMLNode(props={"href": "https://www.google.com", "target": "_blank"})
         self.assertNotEqual(node, node4)
+    
+    def test_eq(self):
+        node = LeafNode("p", "text", {"a1":"b1", "a2":"b2"})
+        node2 = LeafNode("p", "text", {"a1":"b1", "a2":"b2"})
+        self.assertEqual(node, node2)
 
-    def test_not_eq_text(self):
-        node = TextNode("This is a text node", TextType.BOLD)
-        node5 = TextNode("This is another text node", TextType.BOLD)
-        self.assertNotEqual(node, node5)
-
-    def test_not_eq(self):
-        node = TextNode("This is a text node", TextType.BOLD)
-        node6 = TextNode("This is another text node", TextType.LINK, "what?")
-        self.assertNotEqual(node, node6)
+    def test_not_eq_enum(self):
+        node = LeafNode("p", "text", {"a1":"b1", "a2":"b2"})
+        node3 = LeafNode("a", "other text", props={"href": "https://www.google.com", "target": "_blank"})
+        self.assertNotEqual(node, node3)
 
 
 if __name__ == "__main__":
