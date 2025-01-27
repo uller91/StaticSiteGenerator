@@ -3,50 +3,8 @@ import unittest
 from htmlnode import HTMLNode, LeafNode, ParentNode
 
 
-class TestTextNode(unittest.TestCase):
+class TestHtmlNode(unittest.TestCase):
     
-    '''
-    dummy_3 = HTMLNode("p", "text", ["a", "b"], {"a1":"b1", "a2":"b2"})
-    print(dummy_3.__repr__())
-
-    line = ""
-    line = dummy_3.props_to_html()
-    print(line)
-
-    node = HTMLNode(props=None)
-    print(node.__repr__())
-    print(node.props_to_html())
-
-    node2 = HTMLNode(props={"href": "https://www.google.com", "target": "_blank"})
-    print(node2.__repr__())
-    print(node2.props_to_html())
-
-    leaf1 = LeafNode("p", "text", {"a1":"b1", "a2":"b2"})
-    print(leaf1.__repr__())
-    print(leaf1.to_html())
-
-    leaf2 = LeafNode("p", "text")
-    print(leaf2.__repr__())
-    print(leaf2.to_html())
-    
-
-    leaf1 = LeafNode("p", "text", {"a1":"b1", "a2":"b2"})
-    print(leaf1.__repr__())
-
-    leaf2 = LeafNode("b", "text2")
-    print(leaf2.__repr__())
-
-    parent = ParentNode("a", [leaf1])
-    print(parent.__repr__())
-    print(parent.to_html())
-
-    parent2 = ParentNode("c", [leaf1, leaf2], {"c1":"d1"})
-    print(parent2.__repr__())
-    print(parent2.to_html())
-    '''
-    
-    
-""" 
     def test_eq(self):
         node = HTMLNode("p", "text", ["a", "b"], {"a1":"b1", "a2":"b2"})
         node2 = HTMLNode("p", "text", ["a", "b"], {"a1":"b1", "a2":"b2"})
@@ -99,7 +57,7 @@ class TestTextNode(unittest.TestCase):
         leaf2 = LeafNode("b", "text2")
         node = ParentNode("a", [leaf1])
         self.assertEqual(node.children[0], leaf2)
-"""
+
 
 if __name__ == "__main__":
     unittest.main()

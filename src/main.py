@@ -1,10 +1,9 @@
-from textnode import TextNode, TextType
+from textnode import TextNode, TextType, text_node_to_html_node
 from htmlnode import HTMLNode, LeafNode, ParentNode
+from inline_markdown import split_nodes_delimiter
 
 
 def main():
-
-    node1 = TextNode("text", TextType.TEXT)
-
+    return 0
 
 main()
