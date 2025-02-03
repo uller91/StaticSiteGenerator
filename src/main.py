@@ -2,14 +2,14 @@ import re
 
 from textnode import TextNode, TextType, text_node_to_html_node
 from htmlnode import HTMLNode, LeafNode, ParentNode
-from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link
+from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes
 
 
 def main():
     #text = "test ![text test](link/abc) ![text test 2](link/abc2)"
     #print(extract_markdown_images(text))
     
-    node = TextNode("text", TextType.ITALIC)
+    """node = TextNode("text", TextType.ITALIC)
     print(split_nodes_image([node]))
 
     node2 = TextNode("text", TextType.TEXT)
@@ -40,6 +40,9 @@ def main():
     print(split_nodes_image(nodes10))
 
     nodes11 = split_nodes_image(nodes10)
-    print(split_nodes_delimiter(nodes11, "**", TextType.BOLD))
+    print(split_nodes_delimiter(nodes11, "**", TextType.BOLD))"""
+
+    text1 = "This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
+    print(text_to_textnodes(text1))
 
 main()
