@@ -1,9 +1,4 @@
-import re
-
-from textnode import TextNode, TextType, text_node_to_html_node
-from htmlnode import HTMLNode, LeafNode, ParentNode
-from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes
-from block_markdown import markdown_to_blocks, block_to_block_type
+from block_markdown import *
 
 
 def main():
@@ -12,7 +7,8 @@ def main():
     #list = markdown_to_blocks(text)
     #print(list)
     
-    text_2 = "###### heading"
+    
+    """text_2 = "###### heading"
     print(block_to_block_type(text_2))
 
     text_3 = "> quote\n> quote\n> qq"
@@ -28,8 +24,16 @@ def main():
     print(block_to_block_type(text_6))
 
     text_7 = "1. list\n2. list"
-    print(block_to_block_type(text_7))
+    print(block_to_block_type(text_7))"""
 
+    text_8 = "## moar headings \n\n aaa \n\n bbb \n *ccc*"
+    #print(markdown_to_html_node(text_8))
+    
+    text_9 = "```\n1code code2\n```"
+    #print(markdown_to_html_node(text_9))
+
+    text_10 = "> start\n> *middle*\n> end"
+    #print(markdown_to_html_node(text_10))
 
 
 main()
