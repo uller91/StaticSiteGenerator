@@ -6,7 +6,6 @@ from inline_markdown import split_nodes_delimiter, extract_markdown_images, extr
 
 class TestDelimeter(unittest.TestCase):
     
-    
     def test_not_TEXT(self):
         node = TextNode("text", TextType.ITALIC)
         node_list = split_nodes_delimiter([node], "**", TextType.BOLD)
