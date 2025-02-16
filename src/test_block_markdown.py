@@ -128,6 +128,50 @@ class BlockToHtmlNode(unittest.TestCase):
         """
 
         node = markdown_to_html_node(md)
-        print(node)
 
-        self.assertEqual("1", "1")
+        self.assertEqual(
+            ParentNode("div", [
+                ParentNode("h2", [LeafNode(None, "heading")]),
+                ParentNode("p", [LeafNode(None, "block of text")]),
+                ParentNode("blockquote", [LeafNode(None, "with a quote and one more")])
+            ]), node)
+
+    def test_case_2(self):
+        md = """
+        ## heading\n\n```\bwith a code\n```
+        """
+
+        node = markdown_to_html_node(md)
+
+        self.assertEqual(
+            ParentNode("div", [
+                ParentNode("h2", [LeafNode(None, "heading")]),
+                ParentNode("pre", [ParentNode("code", [LeafNode(None, "with a code\n")])])
+            ]), node)
+        
+    def test_case_3(self):
+        md = """
+        ![image](link)\n\n* unordered\n* list
+        """
+
+        node = markdown_to_html_node(md)
+
+        self.assertEqual(
+            ParentNode("div", [
+                ParentNode("p", [LeafNode("img", "", {"src": "link", "alt": "image"})]),
+                ParentNode("li", [ParentNode("ul", [LeafNode(None, "unordered")]), ParentNode("ul", [LeafNode(None, "list")])])
+            ]), node)
+
+
+    def test_case_4(self):
+        md = """
+        1. one\n2. two\n3. three\n\n- unordered\n- list
+        """
+
+        node = markdown_to_html_node(md)
+
+        self.assertEqual(
+            ParentNode("div", [
+                ParentNode("li", [ParentNode("ol", [LeafNode(None, "one")]), ParentNode("ol", [LeafNode(None, "two")]), ParentNode("ol", [LeafNode(None, "three")])]),
+                ParentNode("li", [ParentNode("ul", [LeafNode(None, "unordered")]), ParentNode("ul", [LeafNode(None, "list")])])
+            ]), node)

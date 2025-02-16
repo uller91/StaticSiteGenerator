@@ -64,12 +64,12 @@ def markdown_to_html_node(markdown):
             case "quote":
                 marked_blocks.append(quote_block_to_html_node(block))
             case "unordered_list":
-                marked_blocks.append(block) #4
+                marked_blocks.append(ul_block_to_html_node(block))
             case "ordered_list":
-                marked_blocks.append(block) #5
+                marked_blocks.append(ol_block_to_html_node(block))
             case "paragraph":
                 marked_blocks.append(paragraph_block_to_html_node(block))
-    return marked_blocks
+    return ParentNode("div", marked_blocks)
             
     
 def heading_block_to_html_node(heading):
@@ -97,6 +97,22 @@ def quote_block_to_html_node(quote):
     for line in lines:
         cut_lines += " " + str(line[2:])
     return ParentNode("blockquote", text_to_children(cut_lines[1:])) #assumin that the quote line starts with "> "
+
+
+def ul_block_to_html_node(ul):
+    items = ul.split("\n")
+    list = []
+    for item in items:
+        list.append(ParentNode("ul", text_to_children(item[2:])))
+    return ParentNode("li", list)
+
+
+def ol_block_to_html_node(ol):
+    items = ol.split("\n")
+    list = []
+    for item in items:
+        list.append(ParentNode("ol", text_to_children(item[3:])))
+    return ParentNode("li", list)
 
 
 def paragraph_block_to_html_node(text):
