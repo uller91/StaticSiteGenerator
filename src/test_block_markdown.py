@@ -175,3 +175,20 @@ class BlockToHtmlNode(unittest.TestCase):
                 ParentNode("li", [ParentNode("ol", [LeafNode(None, "one")]), ParentNode("ol", [LeafNode(None, "two")]), ParentNode("ol", [LeafNode(None, "three")])]),
                 ParentNode("li", [ParentNode("ul", [LeafNode(None, "unordered")]), ParentNode("ul", [LeafNode(None, "list")])])
             ]), node)
+
+
+class ExtractTItle(unittest.TestCase):
+
+    def test_case_1(self):
+        markdown = "# Hello World"
+        self.assertEqual(extract_title(markdown), "Hello World")
+
+
+    def test_case_2(self):
+        markdown = "# Hello World \n"
+        self.assertEqual(extract_title(markdown), "Hello World")
+
+
+    def test_case_3(self):
+        markdown = "# Hello World \nand no more\n"
+        self.assertEqual(extract_title(markdown), "Hello World \nand no more")

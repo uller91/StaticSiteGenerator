@@ -3,6 +3,15 @@ from htmlnode import HTMLNode, LeafNode, ParentNode
 from inline_markdown import split_nodes_delimiter, extract_markdown_images, extract_markdown_links, split_nodes_image, split_nodes_link, text_to_textnodes
 
 
+def extract_title(markdown):
+    blocks = markdown_to_blocks(markdown)
+    for block in blocks:
+        if block.startswith("# "):
+            title = block[2:]
+            return title.strip()
+    raise Exception("No title found!")
+
+
 def markdown_to_blocks(markdown):
     split_markdown = markdown.split("\n\n")
     return_list = []
@@ -103,16 +112,16 @@ def ul_block_to_html_node(ul):
     items = ul.split("\n")
     list = []
     for item in items:
-        list.append(ParentNode("ul", text_to_children(item[2:])))
-    return ParentNode("li", list)
+        list.append(ParentNode("li", text_to_children(item[2:])))
+    return ParentNode("ul", list)
 
 
 def ol_block_to_html_node(ol):
     items = ol.split("\n")
     list = []
     for item in items:
-        list.append(ParentNode("ol", text_to_children(item[3:])))
-    return ParentNode("li", list)
+        list.append(ParentNode("li", text_to_children(item[3:])))
+    return ParentNode("ol", list)
 
 
 def paragraph_block_to_html_node(text):

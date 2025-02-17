@@ -15,7 +15,7 @@ class HTMLNode():
         props_line = ""
         for key, value in self.props.items():
             props_line += f' {key}="{value}"'
-            #print(props_line)
+            #props_line.strip()
         return props_line
         
     def __eq__(self, HTMLNode):
@@ -43,7 +43,7 @@ class LeafNode(HTMLNode):
                 return f"<{self.tag}>{self.value}</{self.tag}>"
             else:
                 props = self.props_to_html()
-                return f"<{self.tag} {props}>{self.value}</{self.tag}>"
+                return f"<{self.tag}{props}>{self.value}</{self.tag}>"
 
     def __repr__(self):
         return f"LeafNode(tag={self.tag}, value={self.value}, props={self.props})"
@@ -70,7 +70,7 @@ class ParentNode(HTMLNode):
                 return f"<{self.tag}>{children_html}</{self.tag}>"
             else:
                 props = self.props_to_html()
-                return f"<{self.tag} {props}>{children_html}</{self.tag}>"
+                return f"<{self.tag}{props}>{children_html}</{self.tag}>"
 
     def __repr__(self):
         return f"ParentNode(tag={self.tag}, children={self.children}, props={self.props})"
