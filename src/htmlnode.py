@@ -15,7 +15,6 @@ class HTMLNode():
         props_line = ""
         for key, value in self.props.items():
             props_line += f' {key}="{value}"'
-            #props_line.strip()
         return props_line
         
     def __eq__(self, HTMLNode):
@@ -64,7 +63,6 @@ class ParentNode(HTMLNode):
             children_html = ""
             for child in self.children:
                 children_html += child.to_html()
-                #print(children_html)
             
             if self.props == None:
                 return f"<{self.tag}>{children_html}</{self.tag}>"

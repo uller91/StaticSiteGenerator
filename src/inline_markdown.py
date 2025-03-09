@@ -10,9 +10,6 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
             new_nodes.append(old_node)
             continue
 
-        #if old_node.text.find(delimiter) == -1:
-        #    raise ValueError("delimeter is not found in the sting")
-
         split_nodes = []
         sub_nodes = old_node.text.split(delimiter)
         if len(sub_nodes) % 2 == 0:
@@ -52,12 +49,6 @@ def split_nodes_image(old_nodes):
 
         index_text = old_node.text.index(images[0][0])
         index_link = old_node.text.index(images[0][1])
-        
-        #position tests
-        #print(index_text)
-        #print(index_link + len(images[0][1]))
-        #print(old_node.text[:index_text - 2])
-        #print(old_node.text[index_link + len(images[0][1]) + 1:])
 
         if len(old_node.text[:index_text - 2]) != 0:
             new_nodes.append(TextNode(old_node.text[:index_text - 2], TextType.TEXT))
